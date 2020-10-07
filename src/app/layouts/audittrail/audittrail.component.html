@@ -1,0 +1,92 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="ml-3">
+        <span>page: {{page+1}}</span>
+        <button (click)="nextPrevious(-1)" class="ml-2">Previous</button>
+
+        <!--      <button class="btn" data-toggle="button"-->
+        <!--              *ngFor="let i of numbers(startFrom)" (click)="pagination(i)">{{i+1}}</button>-->
+
+        <button (click)="nextPrevious(1)">Next</button>
+      </div>
+
+      <div>
+        <label for="pageSize" class="ml-3">Page Size:&nbsp; </label>
+        <select name="pageSize" id="pageSize" [(ngModel)]="pageSize" (ngModelChange)="reloadData()">
+          <option value="25" selected>25</option>
+          <option value="50">50</option>
+          <option value="100">100</option>
+          <option value="200">200</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="changeTypes" class="ml-3">Change Types:&nbsp; </label>
+        <select name="changeTypes" id="changeTypes" [(ngModel)]="changeType" (ngModelChange)="reloadData()">
+          <option value="ALL" selected>All</option>
+          <option value="INS">Insert</option>
+          <option value="UPD">Update</option>
+          <option value="DEL">Delete</option>
+        </select>
+      </div>
+
+      <div class="ml-5">
+        <input type="text" [(ngModel)]="search">
+        <button (click)="reloadData()">Search</button>
+      </div>
+
+<!--      <div class="ml-5">-->
+<!--        <input type="number" [(ngModel)]="idMerchant">-->
+<!--        <button (click)="reloadData()">Search ID Merchant</button>-->
+<!--      </div>-->
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card card-plain">
+          <div class="card-header card-header-danger">
+            <h4 class="card-title mt-0"> Audittrail Log</h4>
+          </div>
+          <div class="card-body">
+            <div class="tableFixHead">
+              <table class="table table-bordered table-sm mt-1" style="width: 80%">
+                <thead>
+                <tr>
+                  <th>No.</th>
+                  <th>Id</th>
+                  <th>Id Merch</th>
+                  <th>Field</th>
+                  <th>Old Value</th>
+                  <th>New Value</th>
+                  <th>Created Date</th>
+                  <th>Created By</th>
+                  <th>Created By Name</th>
+                  <th>Created Terminal</th>
+                  <th>Changes Type</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let audittrail of audittrails | async; index as i">
+                  <td>{{(i+1)+(page*pageSize)}}</td>
+                  <td>{{audittrail.id}}</td>
+                  <td>{{audittrail.idFdmMerchant}}</td>
+                  <td>{{audittrail.field}}</td>
+                  <td>{{audittrail.oldValue}}</td>
+                  <td>{{audittrail.newValue}}</td>
+                  <td>{{audittrail.createdDate}}</td>
+                  <td>{{audittrail.createdBy}}</td>
+                  <td>{{audittrail.createdByName}}</td>
+                  <td>{{audittrail.createdTerminal}}</td>
+                  <td>{{audittrail.changesType}}</td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

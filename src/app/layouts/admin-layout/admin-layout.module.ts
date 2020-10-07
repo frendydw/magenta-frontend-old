@@ -12,23 +12,27 @@ import {MatSelectModule} from '@angular/material/select';
 import {AudittrailComponent} from '../audittrail/audittrail.component';
 import {AudittrailService} from '../../shared/services/audittrail.service';
 import {HttpClient, HttpClientModule, HttpHandler} from '@angular/common/http';
+import {ChartComponent} from '../chart/chart.component';
+import {ChartsModule} from 'ng2-charts';
 
 @NgModule({
-  imports: [
-      CommonModule,
-      RouterModule.forChild(AdminLayoutRoutes),
-      FormsModule,
-      ReactiveFormsModule,
-      MatButtonModule,
-      MatRippleModule,
-      MatFormFieldModule,
-      MatInputModule,
-      MatSelectModule,
-      MatTooltipModule,
-      HttpClientModule,
-  ],
+    imports: [
+        CommonModule,
+        RouterModule.forChild(AdminLayoutRoutes),
+        FormsModule,
+        ReactiveFormsModule,
+        MatButtonModule,
+        MatRippleModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatSelectModule,
+        MatTooltipModule,
+        HttpClientModule,
+        ChartsModule,
+    ],
   declarations: [
       AudittrailComponent,
+      ChartComponent
   ],
   providers: [
     AudittrailService,

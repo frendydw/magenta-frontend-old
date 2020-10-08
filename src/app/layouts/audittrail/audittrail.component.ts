@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import {Audittrail} from '../../shared/models/audittrail';
 import {AudittrailService} from '../../shared/services/audittrail.service';
+import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'app-audittrail',
@@ -17,6 +18,7 @@ export class AudittrailComponent implements OnInit {
   changeType: string;
   search: string;
   idMerchant: number;
+  filename: string;
   event: Audittrail[];
 
   constructor(private audittrailService: AudittrailService,
@@ -58,4 +60,26 @@ export class AudittrailComponent implements OnInit {
     this.page += num;
     this.reloadData();
   }
+
+  // exportToExcel() {
+  //   this.audittrailService.exportAudittrailLog(this.page.toString(), this.pageSize.toString(),
+  //       this.changeType, this.search, this.idMerchant.toString());
+  // }
+
+  exportToExcel(): void
+  {
+    let date = new Date();
+    this.filename = 'audittrail_' + ('0' + date.getDate()).slice(-2) + '_'
+        + ('0' + (date.getMonth()+1)).slice(-2) + '_'
+        + date.getFullYear() + '_' + date.getHours()
+        + '.' + date.getMinutes() + '.xlsx';
+    let element = document.getElementById('excel-table');
+    const ws: XLSX.WorkSheet =XLSX.utils.table_to_sheet(element);
+
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+
+    XLSX.writeFile(wb, this.filename);
+  }
+
 }

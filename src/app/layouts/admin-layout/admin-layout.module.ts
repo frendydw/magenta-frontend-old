@@ -15,6 +15,7 @@ import {HttpClient, HttpClientModule, HttpHandler} from '@angular/common/http';
 import {ChartChangesTypeIdMerchComponent} from '../chart-changes-type-id-merch/chart-changes-type-id-merch.component';
 import {ChartsModule} from 'ng2-charts';
 import {ChartChangesTypeFieldComponent} from '../chart-changes-type-field/chart-changes-type-field.component';
+import {BrowserModule} from '@angular/platform-browser';
 
 @NgModule({
     imports: [

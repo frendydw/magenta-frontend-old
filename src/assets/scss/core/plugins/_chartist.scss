@@ -175,7 +175,7 @@
   }
 
   .#{$ct-class-chart-bar}.#{$ct-class-horizontal-bars} .#{$ct-class-label}.#{$ct-class-vertical}.#{$ct-class-start} {
-    //@include ct-chart-label($ct-text-color, $ct-text-size, center, $ct-vertical-text-justify);
+    //@include ct-chart-changes-type-id-merch-label($ct-text-color, $ct-text-size, center, $ct-vertical-text-justify);
     @include ct-align-justify(center, flex-end);
     // Fallback for browsers that don't support foreignObjects
     text-anchor: end;
@@ -227,7 +227,7 @@
 }
 //
 // @if $ct-include-classes {
-//   @include ct-chart();
+//   @include ct-chart-changes-type-id-merch();
 //
 //   @if $ct-include-alternative-responsive-containers {
 //     @for $i from 0 to length($ct-scales-names) {

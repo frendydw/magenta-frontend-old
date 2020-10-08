@@ -12,8 +12,9 @@ import {MatSelectModule} from '@angular/material/select';
 import {AudittrailComponent} from '../audittrail/audittrail.component';
 import {AudittrailService} from '../../shared/services/audittrail.service';
 import {HttpClient, HttpClientModule, HttpHandler} from '@angular/common/http';
-import {ChartComponent} from '../chart/chart.component';
+import {ChartChangesTypeIdMerchComponent} from '../chart-changes-type-id-merch/chart-changes-type-id-merch.component';
 import {ChartsModule} from 'ng2-charts';
+import {ChartChangesTypeFieldComponent} from '../chart-changes-type-field/chart-changes-type-field.component';
 
 @NgModule({
     imports: [
@@ -32,7 +33,8 @@ import {ChartsModule} from 'ng2-charts';
     ],
   declarations: [
       AudittrailComponent,
-      ChartComponent
+      ChartChangesTypeIdMerchComponent,
+      ChartChangesTypeFieldComponent
   ],
   providers: [
     AudittrailService,

@@ -1,13 +1,13 @@
 import {Component, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
-import {AudittrailService} from '../../shared/services/audittrail.service';
+import {AudittrailService} from '../../../shared/services/audittrail.service';
 
 @Component({
-  selector: 'app-chart-field',
-  templateUrl: './chart-changes-type-field.component.html',
-  styleUrls: ['./chart-changes-type-field.component.css']
+  selector: 'app-chart',
+  templateUrl: './chart-changes-type-id-merch.component.html',
+  styleUrls: ['./chart-changes-type-id-merch.component.css']
 })
-export class ChartChangesTypeFieldComponent implements OnInit {
+export class ChartChangesTypeIdMerchComponent implements OnInit {
   private event: any;
   flag: boolean;
   constructor(private audittrailService: AudittrailService,
@@ -22,18 +22,11 @@ export class ChartChangesTypeFieldComponent implements OnInit {
   updateValue: string;
   deleteValue: string;
 
-  title = 'Audittrail Change Type Bar Graph by Field';
+  title = 'Audittrail Change Type Bar Graph by Id Merchant';
 
   // ADD CHART OPTIONS.
   chartOptions = {
-    responsive: true,
-    scales: {
-      yAxes: [{
-        ticks: {
-          suggestedMin: 50,
-        }
-      }]
-    }
+    responsive: true    // THIS WILL MAKE THE CHART RESPONSIVE (VISIBLE IN ANY DEVICE).
   };
   labels =  ['Insert', 'Update', 'Delete'];
 
@@ -60,16 +53,13 @@ export class ChartChangesTypeFieldComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.audittrailService.getAudittrailChangeTypeCountByField().subscribe(res => {
-      console.log(res[1][0]);
+    this.audittrailService.getAudittrailChangeTypeCount().subscribe(res => {
       this.insertCount = (res[0][0]);
       this.updateCount = (res[1][0]);
       this.deleteCount = (res[2][0]);
-
       this.chartData[0].data[0] = this.insertCount;
       this.chartData[0].data[1] = this.updateCount;
       this.chartData[0].data[2] = this.deleteCount;
-
       this.insertValue = this.insertCount.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
       this.updateValue = this.updateCount.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
       this.deleteValue = this.deleteCount.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');

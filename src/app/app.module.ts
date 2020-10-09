@@ -22,7 +22,7 @@ import {
   AgmCoreModule
 } from '@agm/core';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
-import {AudittrailComponent} from './layouts/audittrail/audittrail.component';
+import {AudittrailLogComponent} from './layouts/audittrail/audittrail-log/audittrail-log.component';
 
 @NgModule({
   imports: [

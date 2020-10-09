@@ -1,16 +1,16 @@
 import {Component, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import {Audittrail} from '../../shared/models/audittrail';
-import {AudittrailService} from '../../shared/services/audittrail.service';
+import {Audittrail} from '../../../shared/models/audittrail';
+import {AudittrailService} from '../../../shared/services/audittrail.service';
 import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'app-audittrail',
-  templateUrl: './audittrail.component.html',
-  styleUrls: ['./audittrail.component.css']
+  templateUrl: './audittrail-log.component.html',
+  styleUrls: ['./audittrail-log.component.css']
 })
-export class AudittrailComponent implements OnInit {
+export class AudittrailLogComponent implements OnInit {
   audittrails: Observable<Audittrail[]>;
   page: number;
   pageSize: number;

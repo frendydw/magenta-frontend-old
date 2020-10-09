@@ -1,0 +1,49 @@
+<div class="main-content">
+  <div class="container-fluid">
+
+
+    <div class="card-body">
+      <label for="files" class="btn btn-success">Select Excel File</label>
+      <input hidden id="files" type="file" (change)="onFileChange($event)" multiple="false" class="mb-3">
+
+      <div  *ngIf="this.flag">
+        <div class="tableFixHead">
+          <table class="table table-bordered table-sm mt-1" id="excel-table" style="width: 80%">
+            <thead>
+            <tr>
+              <th>No</th>
+              <th>Id Merch</th>
+              <th>Field</th>
+              <th>Old Value</th>
+              <th>New Value</th>
+              <th>Created Date</th>
+              <th>Created By</th>
+              <th>Created By Name</th>
+              <th>Created Terminal</th>
+              <th>Changes Type</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let audittrail of audittrails; index as i">
+              <td>{{i+1}}</td>
+              <td>{{audittrail.idFdmMerchant}}</td>
+              <td>{{audittrail.field}}</td>
+              <td>{{audittrail.oldValue}}</td>
+              <td>{{audittrail.newValue}}</td>
+              <td>{{audittrail.createdDate}}</td>
+              <td>{{audittrail.createdBy}}</td>
+              <td>{{audittrail.createdByName}}</td>
+              <td>{{audittrail.createdTerminal}}</td>
+              <td>{{audittrail.changesType}}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        <button type="button" class="btn btn-outline-primary" (click)="save()">Save</button>
+      </div>
+
+
+    </div>
+  </div>
+</div>

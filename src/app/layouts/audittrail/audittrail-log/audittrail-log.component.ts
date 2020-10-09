@@ -19,7 +19,6 @@ export class AudittrailLogComponent implements OnInit {
   search: string;
   idMerchant: number;
   filename: string;
-  event: Audittrail[];
 
   constructor(private audittrailService: AudittrailService,
               private router: Router) {
@@ -38,8 +37,7 @@ export class AudittrailLogComponent implements OnInit {
   reloadData() {
     this.audittrails = this.audittrailService.getAudittrailAll(this.page.toString(), this.pageSize.toString(),
       this.changeType, this.search, this.idMerchant.toString());
-    console.log(this.audittrails.subscribe(event => this.event = event));
-
+    this.audittrails.subscribe(res => console.log(res))
   }
 
   numbers(startFrom: number) {

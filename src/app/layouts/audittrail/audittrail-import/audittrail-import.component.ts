@@ -14,6 +14,7 @@ import {Observable} from 'rxjs';
 })
 export class AudittrailImportComponent implements OnInit {
   audittrails: Audittrail[] = [];
+  audittrailsSave: Audittrail = new Audittrail();
 
   flag: boolean;
 
@@ -54,5 +55,14 @@ export class AudittrailImportComponent implements OnInit {
 
   save() {
     console.log(this.audittrails);
+    this.audittrailService.createAudittrail(this.audittrails[0]);
+    alert("File saved!");
+    this.router.navigate([`../audittrail-log`]);
+  }
+
+  saveClick() {
+    if(confirm("Import file confirmation")) {
+      this.save();
+    }
   }
 }

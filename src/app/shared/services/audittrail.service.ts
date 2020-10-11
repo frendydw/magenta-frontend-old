@@ -60,4 +60,9 @@ export class AudittrailService {
       window.open(window.URL.createObjectURL(res));
     });
    }
+
+  createAudittrail(audittrail: Object): Observable<Object> {
+    return this.http.post(`${this.baseUrl}` + '/audittrail', audittrail);
+  }
+
 }

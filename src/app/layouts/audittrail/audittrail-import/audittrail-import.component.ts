@@ -36,8 +36,10 @@ export class AudittrailImportComponent implements OnInit {
 
       const bstr: string = e.target.result;
       const data = <any[]>this.excelService.importFromFile(bstr);
+      console.log(data);
       const header: string[] = Object.getOwnPropertyNames(new Audittrail());
       const importedData = data.slice(1);
+      console.log(importedData);
 
       this.audittrails = importedData.map(arr => {
         const obj = {};
@@ -54,8 +56,14 @@ export class AudittrailImportComponent implements OnInit {
   }
 
   save() {
-    console.log(this.audittrails);
-    this.audittrailService.createAudittrail(this.audittrails[0]);
+    this.audittrails.forEach(value => {
+      this.audittrailsSave = value;
+      this.audittrailsSave.createdDate = '2018-07-18';
+
+      this.audittrailService.createAudittrail(this.audittrailsSave).subscribe(data => {
+        this.audittrailsSave = new Audittrail();
+      },error => console.log(error));
+    });
     alert("File saved!");
     this.router.navigate([`../audittrail-log`]);
   }

@@ -62,7 +62,7 @@ export class AudittrailService {
    }
 
   createAudittrail(audittrail: Object): Observable<Object> {
-    return this.http.post(`${this.baseUrl}` + '/audittrail', audittrail);
+    return this.http.post(`${this.baseUrl}` + '/audittrail-save', audittrail);
   }
 
 }

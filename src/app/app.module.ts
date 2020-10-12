@@ -13,6 +13,8 @@ import {
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import {LoginComponent} from './login/login.component';
 import {HttpClientModule} from '@angular/common/http';
+import {StorageServiceModule} from 'angular-webstorage-service';
+import {BrowserModule} from '@angular/platform-browser';
 
 @NgModule({
   imports: [
@@ -26,7 +28,7 @@ import {HttpClientModule} from '@angular/common/http';
       AgmCoreModule.forRoot({
         apiKey: 'YOUR_GOOGLE_MAPS_API_KEY'
       }),
-      HttpClientModule
+      HttpClientModule,
   ],
   declarations: [
       AppComponent,

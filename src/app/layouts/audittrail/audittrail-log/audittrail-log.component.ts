@@ -28,6 +28,13 @@ export class AudittrailLogComponent implements OnInit {
     this.page = 0;
     this.pageSize = 25;
     this.idMerchant = 0;
+
+    const userName = sessionStorage.getItem('user_username');
+
+    if (!userName) {
+      alert('Please Login First!');
+      this.router.navigate(['./login']);
+    }
   }
 
   ngOnInit() {

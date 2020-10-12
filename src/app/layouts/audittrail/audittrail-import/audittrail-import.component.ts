@@ -15,7 +15,7 @@ import {Observable} from 'rxjs';
 export class AudittrailImportComponent implements OnInit {
   audittrails: Audittrail[] = [];
   audittrailsSave: Audittrail = new Audittrail();
-
+  dateNow = new Date();
   flag: boolean;
 
   constructor(private audittrailService: AudittrailService,
@@ -39,7 +39,6 @@ export class AudittrailImportComponent implements OnInit {
       console.log(data);
       const header: string[] = Object.getOwnPropertyNames(new Audittrail());
       const importedData = data.slice(1);
-      console.log(importedData);
 
       this.audittrails = importedData.map(arr => {
         const obj = {};
@@ -58,8 +57,7 @@ export class AudittrailImportComponent implements OnInit {
   save() {
     this.audittrails.forEach(value => {
       this.audittrailsSave = value;
-      this.audittrailsSave.createdDate = '2018-07-18';
-
+      this.audittrailsSave.createdDate = this.excelDateToJSDate(this.audittrailsSave.createdDate);
       this.audittrailService.createAudittrail(this.audittrailsSave).subscribe(data => {
         this.audittrailsSave = new Audittrail();
       },error => console.log(error));
@@ -72,5 +70,11 @@ export class AudittrailImportComponent implements OnInit {
     if(confirm("Import file confirmation")) {
       this.save();
     }
+  }
+
+  excelDateToJSDate(date) {
+    const dateConvert = new Date(Math.round((date - 25569)*86400*1000));
+    date = dateConvert.getFullYear() + '-' + dateConvert.getMonth() + '-' + dateConvert.getDate();
+    return date;
   }
 }

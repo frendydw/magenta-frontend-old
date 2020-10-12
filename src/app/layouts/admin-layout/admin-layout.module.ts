@@ -17,6 +17,7 @@ import {ChartsModule} from 'ng2-charts';
 import {ChartChangesTypeFieldComponent} from '../chart/chart-changes-type-field/chart-changes-type-field.component';
 import {BrowserModule} from '@angular/platform-browser';
 import {AudittrailImportComponent} from '../audittrail/audittrail-import/audittrail-import.component';
+import {UserService} from '../../shared/services/user.service';
 
 @NgModule({
     imports: [
@@ -37,7 +38,7 @@ import {AudittrailImportComponent} from '../audittrail/audittrail-import/audittr
       AudittrailLogComponent,
       AudittrailImportComponent,
       ChartChangesTypeIdMerchComponent,
-      ChartChangesTypeFieldComponent
+      ChartChangesTypeFieldComponent,
   ],
   providers: [
     AudittrailService,

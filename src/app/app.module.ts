@@ -12,23 +12,25 @@ import {
 } from '@agm/core';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import {LoginComponent} from './login/login.component';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   imports: [
-    BrowserAnimationsModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpModule,
-    ComponentsModule,
-    RouterModule,
-    AppRoutingModule,
-    AgmCoreModule.forRoot({
-      apiKey: 'YOUR_GOOGLE_MAPS_API_KEY'
-    }),
+      BrowserAnimationsModule,
+      FormsModule,
+      ReactiveFormsModule,
+      HttpModule,
+      ComponentsModule,
+      RouterModule,
+      AppRoutingModule,
+      AgmCoreModule.forRoot({
+        apiKey: 'YOUR_GOOGLE_MAPS_API_KEY'
+      }),
+      HttpClientModule
   ],
   declarations: [
-    AppComponent,
-    AdminLayoutComponent,
+      AppComponent,
+      AdminLayoutComponent,
       LoginComponent
   ],
   providers: [],

@@ -30,6 +30,7 @@ export class AudittrailLogComponent implements OnInit {
     this.idMerchant = 0;
 
     const userName = sessionStorage.getItem('user_username');
+    console.log(userName);
 
     if (!userName) {
       alert('Please Login First!');

@@ -13,6 +13,14 @@ export class ChartChangesTypeFieldComponent implements OnInit {
   constructor(private audittrailService: AudittrailService,
               private router: Router) {
     this.flag = false;
+
+    const userName = sessionStorage.getItem('user_username');
+    console.log(userName);
+
+    if (!userName) {
+      alert('Please Login First!');
+      this.router.navigate(['./login']);
+    }
   }
 
   insertCount: number;

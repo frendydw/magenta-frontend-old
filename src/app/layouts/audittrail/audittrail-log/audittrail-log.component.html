@@ -1,19 +1,20 @@
 <div class="main-content">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-3">
+      <div class="col-lg-3">
         <label>Page: {{page+1}}</label>
 
         <button type="button" (click)="nextPrevious(-1)" class="ml-2 btn btn-light btn-sm">Previous</button>
 
-        <!--      <button class="btn" data-toggle="button"-->
-        <!--              *ngFor="let i of numbers(startFrom)" (click)="pagination(i)">{{i+1}}</button>-->
-
         <button type="button" (click)="nextPrevious(1)" class="btn btn-light btn-sm">Next</button>
       </div>
 
-      <label class="ml-3 mt-1">Page Size:&nbsp; </label>
-      <div>
+      <!--      <button class="btn" data-toggle="button"-->
+        <!--              *ngFor="let i of numbers(startFrom)" (click)="pagination(i)">{{i+1}}</button>-->
+
+      <div class="col-lg-2">
+        <label class="ml-3 mt-1">Page Size:&nbsp; </label>
+
         <select class="browser-default custom-select" name="pageSize" id="pageSize" [(ngModel)]="pageSize" (ngModelChange)="reloadData()">
           <option value="25" selected>&nbsp;25</option>
           <option value="50">&nbsp;50</option>
@@ -22,8 +23,9 @@
         </select>
       </div>
 
-      <label for="changeTypes" class="ml-3 mt-1">Change Types:&nbsp; </label>
-      <div>
+      <div class="col-lg-2">
+        <label for="changeTypes" class="ml-3 mt-1">Change Types:&nbsp; </label>
+
         <select class="browser-default custom-select" name="changeTypes" id="changeTypes" [(ngModel)]="changeType" (ngModelChange)="reloadData()">
           <option value="ALL" selected>&nbsp;All</option>
           <option value="INS">&nbsp;Insert</option>
@@ -32,13 +34,16 @@
         </select>
       </div>
 
-      <div class="ml-5">
+
+      <div class="col-lg-3">
         <input type="text" [(ngModel)]="search">
         <button type="button" (click)="reloadData()" class="btn btn-primary btn-sm">Search</button>
       </div>
 
+      <div class="col-lg-2">
+        <button type="button" (click)="exportToExcel()" class="btn btn-success btn-sm">Export this Page</button>
+      </div>
 
-      <button type="button" (click)="exportToExcel()" class="btn btn-success btn-sm ml-5">Export this Page</button>
 
     </div>
     <div class="row">

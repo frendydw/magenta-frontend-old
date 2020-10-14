@@ -2,6 +2,9 @@ import { Component, OnInit, ElementRef } from '@angular/core';
 import { ROUTES } from '../sidebar/sidebar.component';
 import {Location, LocationStrategy, PathLocationStrategy} from '@angular/common';
 import { Router } from '@angular/router';
+import swal from 'sweetalert2';
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-navbar',
@@ -124,7 +127,23 @@ export class NavbarComponent implements OnInit {
     }
 
     logout() {
-        sessionStorage.clear();
-        this.router.navigate(['./login']);
+        Swal.fire({
+            title: 'Are you sure want to sign out?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire(
+                    'Logout Success!',
+                    '',
+                    'success'
+                )
+                sessionStorage.clear();
+                this.router.navigate(['./login']);
+            }
+        })
     }
 }

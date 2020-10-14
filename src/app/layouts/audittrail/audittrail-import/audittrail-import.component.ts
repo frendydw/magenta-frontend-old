@@ -5,6 +5,7 @@ import * as XLSX from 'xlsx';
 import {Audittrail} from '../../../shared/models/audittrail';
 import {ExcelService} from '../../../shared/excel/excel.service';
 import {Observable} from 'rxjs';
+import Swal from "sweetalert2";
 
 
 @Component({
@@ -63,21 +64,31 @@ export class AudittrailImportComponent implements OnInit {
   }
 
   save() {
-    this.audittrails.forEach(value => {
-      this.audittrailsSave = value;
-      this.audittrailsSave.createdDate = this.excelDateToJSDate(this.audittrailsSave.createdDate);
-      this.audittrailService.createAudittrail(this.audittrailsSave).subscribe(data => {
-        this.audittrailsSave = new Audittrail();
-      },error => console.log(error));
-    });
-    alert("File saved!");
-    this.router.navigate([`../audittrail-log`]);
-  }
+    Swal.fire({
+      title: 'Are you sure want to import this file?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.audittrails.forEach(value => {
+          this.audittrailsSave = value;
+          this.audittrailsSave.createdDate = this.excelDateToJSDate(this.audittrailsSave.createdDate);
+          this.audittrailService.createAudittrail(this.audittrailsSave).subscribe(data => {
+            this.audittrailsSave = new Audittrail();
+          },error => console.log(error));
+        });
+        Swal.fire(
+            'File Imported!',
+            '',
+            'success'
+        )
+        this.router.navigate([`../audittrail-log`]);
+      }
+    })
 
-  saveClick() {
-    if(confirm("Import file confirmation")) {
-      this.save();
-    }
   }
 
   excelDateToJSDate(date) {

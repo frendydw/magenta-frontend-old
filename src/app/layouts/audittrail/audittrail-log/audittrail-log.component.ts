@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import {Audittrail} from '../../../shared/models/audittrail';
 import {AudittrailService} from '../../../shared/services/audittrail.service';
 import * as XLSX from 'xlsx';
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-audittrail',
@@ -74,18 +75,36 @@ export class AudittrailLogComponent implements OnInit {
 
   exportToExcel(): void
   {
-    let date = new Date();
-    this.filename = 'audittrail_' + ('0' + date.getDate()).slice(-2) + '_'
-        + ('0' + (date.getMonth()+1)).slice(-2) + '_'
-        + date.getFullYear() + '_' + date.getHours()
-        + '.' + date.getMinutes() + '.xlsx';
-    let element = document.getElementById('excel-table');
-    const ws: XLSX.WorkSheet =XLSX.utils.table_to_sheet(element);
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'All data in this table will be exported as excel file.',
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+            'File Exported!',
+            '',
+            'success'
+        )
+        let date = new Date();
+        this.filename = 'audittrail_' + ('0' + date.getDate()).slice(-2) + '_'
+            + ('0' + (date.getMonth()+1)).slice(-2) + '_'
+            + date.getFullYear() + '_' + date.getHours()
+            + '.' + date.getMinutes() + '.xlsx';
+        let element = document.getElementById('excel-table');
+        const ws: XLSX.WorkSheet =XLSX.utils.table_to_sheet(element);
 
-    const wb: XLSX.WorkBook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+        const wb: XLSX.WorkBook = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
 
-    XLSX.writeFile(wb, this.filename);
+        XLSX.writeFile(wb, this.filename);
+      }
+    })
+
   }
 
 }

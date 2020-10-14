@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 import {AudittrailService} from '../../../shared/services/audittrail.service';
+import Swal from "sweetalert2";
+
 
 @Component({
   selector: 'app-chart-field',
@@ -68,6 +70,12 @@ export class ChartChangesTypeFieldComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    Swal.fire({
+      title: 'Loading Data',
+      text: 'please wait...',
+      allowOutsideClick: false
+    });
+    Swal.showLoading();
     this.audittrailService.getAudittrailChangeTypeCountByField().subscribe(res => {
       console.log(res[1][0]);
       this.insertCount = (res[0][0]);
@@ -83,6 +91,7 @@ export class ChartChangesTypeFieldComponent implements OnInit {
       this.deleteValue = this.deleteCount.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
 
       this.flag = true;
+      Swal.close();
     });
   }
 }

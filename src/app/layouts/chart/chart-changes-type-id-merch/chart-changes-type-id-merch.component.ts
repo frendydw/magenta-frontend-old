@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 import {AudittrailService} from '../../../shared/services/audittrail.service';
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-chart',
@@ -61,6 +62,12 @@ export class ChartChangesTypeIdMerchComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    Swal.fire({
+      title: 'Loading Data',
+      text: 'please wait...',
+      allowOutsideClick: false
+    });
+    Swal.showLoading();
     this.audittrailService.getAudittrailChangeTypeCount().subscribe(res => {
       this.insertCount = (res[0][0]);
       this.updateCount = (res[1][0]);
@@ -73,6 +80,7 @@ export class ChartChangesTypeIdMerchComponent implements OnInit {
       this.deleteValue = this.deleteCount.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
 
       this.flag = true;
+      Swal.close();
     });
   }
 }

@@ -128,7 +128,8 @@ export class NavbarComponent implements OnInit {
 
     logout() {
         Swal.fire({
-            title: 'Are you sure want to sign out?',
+            title: 'Are you sure?',
+            text: 'You are about to sign out.',
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',

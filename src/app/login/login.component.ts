@@ -6,7 +6,6 @@ import {UserService} from '../shared/services/user.service';
 import {User} from '../shared/models/user';
 import {Observable} from 'rxjs';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {LOCAL_STORAGE, WebStorageService} from 'angular-webstorage-service';
 
 @Component({
   selector: 'app-login',
@@ -18,15 +17,25 @@ export class LoginComponent implements OnInit{
   loginForm: FormGroup;
   username: String;
   password: String;
+  checkbox: boolean;
+  cookies: String;
+  usernameCookie: String;
+  passwordCookie: String;
 
   constructor(private router: Router,
               private userService: UserService,
               ) {
+    // set initial session's value
     sessionStorage.setItem('user_id', '0');
+
+    // get cookies
+    this.usernameCookie = this.accessCookie('username');
+    this.passwordCookie = this.accessCookie('password');
   }
 
   ngOnInit(): void {
     this.getUserList();
+
     this.loginForm = new FormGroup({
       username: new FormControl(null, Validators.required),
       password: new FormControl(null, Validators.required),
@@ -41,6 +50,9 @@ export class LoginComponent implements OnInit{
 
   loginButton() {
     console.log(this.userList);
+    var element = <HTMLInputElement> document.getElementById("checked");
+    var isChecked = element.checked;
+
     const username = this.loginForm.get('username').value;
     const password = this.loginForm.get('password').value;
 
@@ -61,7 +73,26 @@ export class LoginComponent implements OnInit{
       sessionStorage.setItem('user_id', userData.id);
       sessionStorage.setItem('user_username', userData.username);
 
+      if (isChecked) {
+        document.cookie = "username=" + userData.username;
+        document.cookie = "password=" + userData.password;
+      }
+
       this.router.navigate([`/dashboard`]);
     }
   }
+
+  accessCookie(cookieName)
+  {
+    var name = cookieName + "=";
+    var allCookieArray = document.cookie.split(';');
+    for(var i=0; i<allCookieArray.length; i++)
+    {
+      var temp = allCookieArray[i].trim();
+      if (temp.indexOf(name)==0)
+        return temp.substring(name.length,temp.length);
+    }
+    return "";
+  }
+
 }

@@ -15,6 +15,7 @@ import {LoginComponent} from './login/login.component';
 import {HttpClientModule} from '@angular/common/http';
 import {StorageServiceModule} from 'angular-webstorage-service';
 import {BrowserModule} from '@angular/platform-browser';
+import {DashboardComponent} from './dashboard/dashboard.component';
 
 @NgModule({
   imports: [
@@ -33,7 +34,8 @@ import {BrowserModule} from '@angular/platform-browser';
   declarations: [
       AppComponent,
       AdminLayoutComponent,
-      LoginComponent
+      LoginComponent,
+      DashboardComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

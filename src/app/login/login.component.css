@@ -3,6 +3,8 @@ html {
     margin: 0;
     height: 100%;
     background-color: #0a6ebd;
+    background-image: url("../../assets/img/background-sunsest-image-2.jpg");
+    background-size: cover;
 }
 
 .user_card {
@@ -10,34 +12,44 @@ html {
     width: 400px;
     margin-top: 50px;
     margin-bottom: 75px;
-    background: #f39c12;
+    background: rgba(250, 190, 88, 0.7);
     position: relative;
     display: flex;
     justify-content: center;
     flex-direction: column;
     padding: 30px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    border-radius: 5px;
-
+    -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 30px;
+    opacity: 0.9;
 }
 .brand_logo_container {
     /*position: absolute;*/
-    height: 170px;
-    width: 170px;
+    /*height: 170px;*/
+    /*width: 170px;*/
     /*top: -75px;*/
     /*border-radius: 50%;*/
     /*background: #60a3bc;*/
     /*padding: 10px;*/
+    margin-bottom: 30px;
     text-align: center;
 }
-/*.brand_logo {*/
-/*    height: 150px;*/
-/*    width: 150px;*/
-/*    border-radius: 50%;*/
-/*    border: 2px solid white;*/
-/*}*/
+
+.brand_text {
+    color: white;
+    margin: auto;
+    text-shadow: 1px 1px orange;
+    font-family: Serif;
+    font-size: 45px;
+}
+.brand_logo {
+    height: 110px;
+    width: 160px;
+    opacity: 1 !important;
+    /*border-radius: 50%;*/
+    /*border: 2px solid white;*/
+}
 .form_container {
     margin-top: 20px;
 }

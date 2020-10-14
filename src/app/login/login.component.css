@@ -12,7 +12,7 @@ html {
     width: 400px;
     margin-top: 50px;
     margin-bottom: 75px;
-    background: rgba(250, 190, 88, 0.7);
+    background: rgba(250, 190, 88, 0.75);
     position: relative;
     display: flex;
     justify-content: center;
@@ -21,7 +21,7 @@ html {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    border-radius: 30px;
+    border-radius: 25px;
     opacity: 0.9;
 }
 .brand_logo_container {

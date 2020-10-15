@@ -62,12 +62,14 @@ export class ChartChangesTypeIdMerchComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
     Swal.fire({
       title: 'Loading Data',
       text: 'please wait...',
-      allowOutsideClick: false
+      allowOutsideClick: false,
     });
     Swal.showLoading();
+
     this.audittrailService.getAudittrailChangeTypeCount().subscribe(res => {
       this.insertCount = (res[0][0]);
       this.updateCount = (res[1][0]);

@@ -37,6 +37,7 @@ export class AudittrailImportComponent implements OnInit {
   }
 
   onFileChange(evt: any) {
+    this.audittrails = [];
     const target: DataTransfer = <DataTransfer>(evt.target);
     if (target.files.length !== 1) throw new Error('Cannot use multiple files');
 
